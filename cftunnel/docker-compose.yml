@@ -2,8 +2,8 @@ version: '3.9'
 
 services:
   cloudflaretunnel:
-    container_name: cftunnel
     image: cloudflare/cloudflared:latest
+    container_name: cloudflaretunnel
     volumes:
       - /etc/localtime:/etc/localtime:ro
     env_file: .env
