@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+  cloudflaretunnel:
+    container_name: cftunnel
+    image: cloudflare/cloudflared:latest
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+    env_file: .env
+    environment:
+      - "TUNNEL_TOKEN=${CLOUDFLARE_TUNNEL_TOKEN}"
+    command: tunnel --no-autoupdate run
+    networks:
+      - frontend
+      - backend
+    restart: always
+
+networks:
+  frontend:
+    external: true
+  backend:
+    external: true
