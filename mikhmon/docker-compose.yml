@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  mikhmon:
+    image: hg860p/mikhmonv3:latest
+    container_name: mikhmon
+    volumes:
+      - /etc/localtime:/etc/localtime
+    #ports:
+    #  - "8989:80"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.mikhmon.entrypoints=web"
+      - "traefik.http.routers.mikhmon.rule=Host(`mikhmon.yourdomain.eu.org`)"
+      - "traefik.http.routers.mikhmon.entrypoints=websecure"
+      - "traefik.http.routers.mikhmon-secure.rule=Host(`mikhmon.yourdomain.eu.org`)"
+      - "traefik.http.routers.mikhmon-secure.service=mikhmon"
+      - "traefik.http.services.mikhmon.loadbalancer.server.port=8080"
+      - "traefik.http.routers.mikhmon-secure.tls=true"
+      #- "traefik.docker.network=frontend"
+    networks:
+      - frontend
+    restart: always
+
+#volumes:
+#  mikhmon-data:
+#    driver: local
+#    name: mikhmon-data
+
+networks:
+  frontend:
+    external: true
