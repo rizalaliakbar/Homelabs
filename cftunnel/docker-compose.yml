@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   cloudflaretunnel:
-    image: cloudflare/cloudflared:latest
+    image: hg860p/cftunnel:v3
     container_name: cloudflaretunnel
     volumes:
       - /etc/localtime:/etc/localtime:ro
