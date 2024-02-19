@@ -2,7 +2,7 @@ version: '3'
 
 services:
   mikhmon:
-    image: hg860p/mikhmonv3:latest
+    image: hg860p/mikhmon:v3
     container_name: mikhmon
     volumes:
       - /etc/localtime:/etc/localtime
